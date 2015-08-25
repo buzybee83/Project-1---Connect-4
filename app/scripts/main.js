@@ -112,8 +112,7 @@ function checkForWinner() {
 }
 
 function endGame() {
-  winner.toUpperCase();
-  $('.winner').html(winner + ' Player WINS!!!');
+  $('.lead').html(winner + ' Player' + '<br />' +'WINS!!!').css({'font-size': '4em', 'margin-top': '50px', 'font-weight': 700,'color': '#FF1919'});
   game.hide();
 }
 
@@ -126,17 +125,15 @@ function initialSetUp() {
 }
 
 // Board focus
-function scroll() {
-  var x = $(this).offset().top - 25;
-  $('html, body').animate({
-    scrollTop: x
-  }, 500);
+function scrollPage() {
+  //var x = $('.jumbotron h1').offset().top - 125;
+  $('html, body').animate({ scrollTop: $('#title').offset().top }, 500);
 }
 
 function gameStart() {
   game.show();
-  $('#2player, #player').hide();
-  $('.topRow').focus(scroll);
+  $('.playerBtn').hide();
+  scrollPage();
   $('#reset').show();
 }
 
