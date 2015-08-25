@@ -10,7 +10,9 @@ var activePlayer = 'yellow';
 
 function togglePlayer() {
   activePlayer = activePlayer === 'yellow' ? 'red' : 'yellow';
+  $('.topRow td').toggleClass('red', 'yellow');
   $('.lead').html('Current Player is: ' + activePlayer);
+
 }
 
 // Initializing board with empty cells
@@ -112,7 +114,12 @@ function checkForWinner() {
 }
 
 function endGame() {
-  $('.lead').html(winner + ' Player' + '<br />' +'WINS!!!').css({'font-size': '4em', 'margin-top': '50px', 'font-weight': 700,'color': '#FF1919'});
+  $('.lead').html(winner + ' Player' + '<br />' + 'WINS!!!').css({
+    'font-size': '4em',
+    'margin-top': '50px',
+    'font-weight': 700,
+    'color': '#FF1919'
+  });
   game.hide();
 }
 
@@ -127,7 +134,9 @@ function initialSetUp() {
 // Board focus
 function scrollPage() {
   //var x = $('.jumbotron h1').offset().top - 125;
-  $('html, body').animate({ scrollTop: $('#title').offset().top }, 500);
+  $('html, body').animate({
+    scrollTop: $('#title').offset().top
+  }, 500);
 }
 
 function gameStart() {
@@ -142,8 +151,9 @@ initialSetUp();
 // Player chip & winner logic
 $('.topRow td').click(function() {
   var col = $(this).parent().children().index($(this));
+  // var activePlayer = $(this).closest('table').data('activeplayer');
 
-  // find first empty cell for given col from bottom to top
+  // find first empty cell for given col from bottom up
   for (var row = NUM_ROWS - 1; row >= 0; row--) {
     if (board[row][col] === EMPTY_CELL) {
       console.log('Found empty cell at ' + row + ',' + col + ' - filling with ' + activePlayer);
@@ -173,3 +183,29 @@ $('#2player').click(function() {
 $('#reset').click(function() {
   location.reload();
 });
+
+
+// $('.topRow td').click(function() {
+//   var col = $(this).parent().children().index($(this));
+
+
+//   var activePlayer = $(this).closest('table').data('activeplayer');
+//   //Get First available slot
+//   var cells = $('table.gameBoard tr td:nth-child(' + (col + 1) + ')');
+//   var cell;
+//   for (var i = cells.length - 1; i > -1; i--) {
+//     if ($(cells[i]).data('token') === undefined) {
+//       cell = cells[i];
+//       break;
+//     }
+//   }
+
+//   $(cell).data('token', activePlayer).addClass(activePlayer);
+
+
+//   //Toggle Active Player
+//   activePlayer = activePlayer === 'red' ? 'blue' : 'red';
+//   $(this).closest('table').toggleClass('red blue').data('activeplayer', activePlayer);
+
+
+// });
