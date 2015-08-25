@@ -1,6 +1,7 @@
 'use strict';
 
 var game = $('#game');
+var message = $('.lead');
 var winner;
 var NUM_ROWS = 6;
 var NUM_COLS = 7;
@@ -11,7 +12,7 @@ var activePlayer = 'Yellow';
 function togglePlayer() {
   activePlayer = activePlayer === 'Yellow' ? 'Red' : 'Yellow';
   $('#top').toggleClass('Red', 'Yellow');
-  $('.lead').html('Current Player is: ' + activePlayer);
+  message.html('Current Player is: ' + activePlayer);
 }
 
 // Initializing board with empty cells
@@ -116,14 +117,22 @@ function checkForWinner() {
 }
 
 function endGame() {
-  $('.lead').html(winner + ' Player' + '<br />' + 'WINS!!!').css({
+  $('.topRow').click(function(){
+    $('.topRow td').unbind();
+});
+}
+
+function displayWinner() {
+  message.html(winner + ' Player' + '<br />' + 'WINS!!!').css({
     'font-size': '4em',
     'margin-top': '50px',
     'font-weight': 700,
     'color': '#FF1919'
   });
+  $('#reset').css('margin-top','50px')
   game.hide()
 }
+
 
 //Hide Board on start.
 function initialSetUp() {
@@ -131,11 +140,13 @@ function initialSetUp() {
   render();
   game.hide();
   $('#reset').hide();
+  $('#player').hide();
+  message.html('Two player game, hit start when ready!');
+  $('#2player').html('Start Game');
 }
 
 // Board focus
 function scrollPage() {
-  //var x = $('.jumbotron h1').offset().top - 125;
   $('html, body').animate({
     scrollTop: $('#title').offset().top
   }, 500);
@@ -146,7 +157,7 @@ function gameStart() {
   $('.playerBtn').hide();
   scrollPage();
   $('#reset').show();
-   $('#top').addClass(activePlayer);
+  $('#top').addClass(activePlayer);
 }
 
 initialSetUp();
@@ -166,6 +177,7 @@ $('.topRow td').click(function() {
       console.log('winner: ' + winner);
       if (winner === 'Yellow' || winner === 'Red') {
         endGame();
+        setTimeout(displayWinner, 6000);
       }
       break;
     }
@@ -179,11 +191,10 @@ $('.topRow td').click(function() {
 $('#2player').click(function() {
   gameStart();
   console.log('game start');
-  $('.lead').html('Current Player is: Yellow');
+  message.html('Current Player is: Yellow');
 });
 
 // Reset -
 $('#reset').click(function() {
   location.reload();
 });
-
