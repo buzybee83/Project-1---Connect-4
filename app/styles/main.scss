@@ -91,12 +91,11 @@ body {
 }
 
 // Board
-
 .gameboard {
   // border-bottom: 6px solid black;
   // border-left: 6px solid black;
   // border-right: 6px solid black;
-  width:  88%;
+  width: 88%;
   height: 90%;
   margin: -15px auto;
   padding-bottom: 80px;
@@ -107,6 +106,7 @@ td {
   //margin: 30px;
   //border: 1px solid black;
 }
+
 .gameboard td {
   background: url(../images/connect4td.png) no-repeat;
   background-size: cover;
@@ -117,27 +117,26 @@ table.Yellow .topRow td:hover {
   background-size: 95%;
 }
 
-table.Red .topRow td:hover,{
+table.Red .topRow td:hover,
+{
   background: url(../images/connect4red.png) no-repeat;
   background-size: 95%;
 }
 
-td.Yellow
-{
+td.Yellow {
   background: url(../images/placedChipYellow.png) no-repeat;
   background-size: cover;
   // background-position: -5px;
 }
 
-td.Red
-{
+td.Red {
   background: url(../images/placedChipRed.png) no-repeat;
   background-size: cover;
   // background-position: -5px;
 }
 
 #rowStart {
-  padding-bottom:10px;
+  padding-bottom: 10px;
   margin: 0 auto 5px;
   width: 89%;
 }
@@ -145,7 +144,6 @@ td.Red
 // .topRow {
 //   margin-top: 0;
 // }
-
 .topRow td {
   border: transparent;
   height: 85px;
@@ -180,17 +178,16 @@ td.Red
     max-width: 500px;
     max-height: 300px;
   }
-     h1 img {
+  h1 img {
     max-width: 300px;
   }
-
   .gameboard {
-  width:  300px;
-  height: 250px;
-  margin-left: auto ;
-  padding-bottom: 25px;
-  position: absolute;
-  top: 70px;
-  left: auto;
-}
+    width: 300px;
+    height: 250px;
+    margin-left: auto;
+    padding-bottom: 25px;
+    position: absolute;
+    top: 70px;
+    left: auto;
+  }
 }

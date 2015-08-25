@@ -60,13 +60,13 @@ function checkForWinner() {
   }
 
   // Check vertical win
-  for (var i = 0; i < NUM_ROWS / 2; i++) {
-    for (var j = 0; j < NUM_COLS; j++) {
-      var cell0 = board[i][j];
-      var cell1 = board[i + 1][j];
-      var cell2 = board[i + 2][j];
-      var cell3 = board[i + 3][j];
-      console.log(cell0 + cell1 + cell2 + cell3)
+  for (i = 0; i < NUM_ROWS / 2; i++) {
+    for (j = 0; j < NUM_COLS; j++) {
+      cell0 = board[i][j];
+      cell1 = board[i + 1][j];
+      cell2 = board[i + 2][j];
+      cell3 = board[i + 3][j];
+      console.log(cell0 + cell1 + cell2 + cell3);
       if (cell0 !== EMPTY_CELL &&
         cell0 === cell1 &&
         cell0 === cell2 &&
@@ -81,13 +81,13 @@ function checkForWinner() {
 
 
   // Diagonal win bottom left - top right
-  for (var i = 0; i < NUM_ROWS / 2; i++) {
-    for (var j = 0; j < NUM_COLS; j++) {
-      var cell0 = board[i][j + 3];
-      var cell1 = board[i + 1][j + 2];
-      var cell2 = board[i + 2][j + 1];
-      var cell3 = board[i + 3][j + 0];
-      console.log(cell0 + cell1 + cell2 + cell3)
+  for (i = 0; i < NUM_ROWS / 2; i++) {
+    for (j = 0; j < NUM_COLS; j++) {
+      cell0 = board[i][j + 3];
+      cell1 = board[i + 1][j + 2];
+      cell2 = board[i + 2][j + 1];
+      cell3 = board[i + 3][j + 0];
+      console.log(cell0 + cell1 + cell2 + cell3);
       if (cell0 !== EMPTY_CELL &&
         cell0 === cell1 &&
         cell0 === cell2 &&
@@ -98,13 +98,13 @@ function checkForWinner() {
   }
 
   // Diagonal win bottom right - top left
-  for (var i = 0; i < NUM_ROWS / 2; i++) {
-    for (var j = 0; j < NUM_COLS; j++) {
-      var cell0 = board[i][j + 0];
-      var cell1 = board[i + 1][j + 1];
-      var cell2 = board[i + 2][j + 2];
-      var cell3 = board[i + 3][j + 3];
-      console.log(cell0 + cell1 + cell2 + cell3)
+  for (i = 0; i < NUM_ROWS / 2; i++) {
+    for (j = 0; j < NUM_COLS; j++) {
+      cell0 = board[i][j + 0];
+      cell1 = board[i + 1][j + 1];
+      cell2 = board[i + 2][j + 2];
+      cell3 = board[i + 3][j + 3];
+      console.log(cell0 + cell1 + cell2 + cell3);
       if (cell0 !== EMPTY_CELL &&
         cell0 === cell1 &&
         cell0 === cell2 &&
@@ -117,9 +117,9 @@ function checkForWinner() {
 }
 
 function endGame() {
-  $('.topRow').click(function(){
+  $('.topRow').click(function() {
     $('.topRow td').unbind();
-});
+  });
 }
 
 function displayWinner() {
@@ -129,8 +129,8 @@ function displayWinner() {
     'font-weight': 700,
     'color': '#FF1919'
   });
-  $('#reset').css('margin-top','50px')
-  game.hide()
+  $('#reset').css('margin-top', '50px');
+  game.hide();
 }
 
 
