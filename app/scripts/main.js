@@ -6,11 +6,11 @@ var NUM_ROWS = 6;
 var NUM_COLS = 7;
 var EMPTY_CELL = '';
 var board = new Array(NUM_ROWS);
-var activePlayer = 'yellow';
+var activePlayer = 'Yellow';
 
 function togglePlayer() {
-  activePlayer = activePlayer === 'yellow' ? 'red' : 'yellow';
-  $('#top').toggleClass('red', 'yellow');
+  activePlayer = activePlayer === 'Yellow' ? 'Red' : 'Yellow';
+  $('#top').toggleClass('Red', 'Yellow');
   $('.lead').html('Current Player is: ' + activePlayer);
 }
 
@@ -22,8 +22,8 @@ function initBoard() {
       board[i][j] = EMPTY_CELL;
     }
   }
-  // board[0][0] = 'yellow';
-  // board[1][1] = 'red';
+  // board[0][0] = 'Yellow';
+  // board[1][1] = 'Red';
   console.log('initBoard: ' + JSON.stringify(board));
 }
 
@@ -70,6 +70,9 @@ function checkForWinner() {
         cell0 === cell1 &&
         cell0 === cell2 &&
         cell0 === cell3) {
+        $(this).css(
+          'border-color', 'Red'
+        );
         return cell0;
       }
     }
@@ -119,7 +122,7 @@ function endGame() {
     'font-weight': 700,
     'color': '#FF1919'
   });
-  game.hide();
+  game.hide()
 }
 
 //Hide Board on start.
@@ -161,7 +164,7 @@ $('.topRow td').click(function() {
       togglePlayer();
       winner = checkForWinner();
       console.log('winner: ' + winner);
-      if (winner === 'yellow' || winner === 'red') {
+      if (winner === 'Yellow' || winner === 'Red') {
         endGame();
       }
       break;
@@ -176,7 +179,7 @@ $('.topRow td').click(function() {
 $('#2player').click(function() {
   gameStart();
   console.log('game start');
-  $('.lead').html('Current Player is: yellow');
+  $('.lead').html('Current Player is: Yellow');
 });
 
 // Reset -
@@ -184,28 +187,3 @@ $('#reset').click(function() {
   location.reload();
 });
 
-
-// $('.topRow td').click(function() {
-//   var col = $(this).parent().children().index($(this));
-
-
-//   var activePlayer = $(this).closest('table').data('activeplayer');
-//   //Get First available slot
-//   var cells = $('table.gameBoard tr td:nth-child(' + (col + 1) + ')');
-//   var cell;
-//   for (var i = cells.length - 1; i > -1; i--) {
-//     if ($(cells[i]).data('token') === undefined) {
-//       cell = cells[i];
-//       break;
-//     }
-//   }
-
-//   $(cell).data('token', activePlayer).addClass(activePlayer);
-
-
-//   //Toggle Active Player
-//   activePlayer = activePlayer === 'red' ? 'blue' : 'red';
-//   $(this).closest('table').toggleClass('red blue').data('activeplayer', activePlayer);
-
-
-// });
