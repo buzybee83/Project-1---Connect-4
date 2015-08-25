@@ -37,79 +37,83 @@
       <p class="lead">Select players to start game!</p>
       <div class="jumbotron">
         <!-- <table id="gameboard" class="col-sm-12 table-bordered"> -->
+        <div class="winner"></div>
         <div id="game">
-          <div id="rowStart">
-            <table data-activeplayer="blue" class="blue">
-              <tr class="topRow">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <div id="rowStart">
+              <!-- <img src="../images/connect4.png" /> -->
+              <table>
+                <tr class="topRow">
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+            <table class='gameboard'>
+              <tr class='row0'>
+                <td id="0-0"></td>
+                <td id="0-1"></td>
+                <td id="0-2"></td>
+                <td id="0-3"></td>
+                <td id="0-4"></td>
+                <td id="0-5"></td>
+                <td id="0-6"></td>
+              </tr>
+              <tr class='row1'>
+                <td id="1-0"></td>
+                <td id="1-1"></td>
+                <td id="1-2"></td>
+                <td id="1-3"></td>
+                <td id="1-4"></td>
+                <td id="1-5"></td>
+                <td id="1-6"></td>
+              </tr>
+              <tr rlass='row2'>
+                <td id="2-0"></td>
+                <td id="2-1"></td>
+                <td id="2-2"></td>
+                <td id="2-3"></td>
+                <td id="2-4"></td>
+                <td id="2-5"></td>
+                <td id="2-6"></td>
+              </tr>
+              <tr rlass='row3'>
+                <td id="3-0"></td>
+                <td id="3-1"></td>
+                <td id="3-2"></td>
+                <td id="3-3"></td>
+                <td id="3-4"></td>
+                <td id="3-5"></td>
+                <td id="3-6"></td>
+              </tr>
+              <tr rlass='row4'>
+                <td id="4-0"></td>
+                <td id="4-1"></td>
+                <td id="4-2"></td>
+                <td id="4-3"></td>
+                <td id="4-4"></td>
+                <td id="4-5"></td>
+                <td id="4-6"></td>
+              </tr>
+              <tr rlass='row5'>
+                <td id="5-0"></td>
+                <td id="5-1"></td>
+                <td id="5-2"></td>
+                <td id="5-3"></td>
+                <td id="5-4"></td>
+                <td id="5-5"></td>
+                <td id="5-6"></td>
               </tr>
             </table>
           </div>
-          <table class='gameBoard'>
-            <tr class='bottomRows'>
-              <td id="c-1-1"></td>
-              <td id="c-1-2"></td>
-              <td id="c-1-3"></td>
-              <td id="c-1-4"></td>
-              <td id="c-1-5"></td>
-              <td id="c-1-6"></td>
-              <td id="c-1-7"></td>
-            </tr>
-            <tr class='bottomRows'>
-              <td id="c-2-1"></td>
-              <td id="c-2-2"></td>
-              <td id="c-2-3"></td>
-              <td id="c-2-4"></td>
-              <td id="c-2-5"></td>
-              <td id="c-2-6"></td>
-              <td id="c-2-7"></td>
-            </tr>
-            <tr class='bottomRows'>
-              <td id="c-3-1"></td>
-              <td id="c-3-2"></td>
-              <td id="c-3-3"></td>
-              <td id="c-3-4"></td>
-              <td id="c-3-5"></td>
-              <td id="c-3-6"></td>
-              <td id="c-3-7"></td>
-            </tr>
-            <tr class='bottomRows'>
-              <td id="c-4-1"></td>
-              <td id="c-4-2"></td>
-              <td id="c-4-3"></td>
-              <td id="c-4-4"></td>
-              <td id="c-4-5"></td>
-              <td id="c-4-6"></td>
-              <td id="c-4-7"></td>
-            </tr>
-            <tr class='bottomRows'>
-              <td id="c-5-1"></td>
-              <td id="c-5-2"></td>
-              <td id="c-5-3"></td>
-              <td id="c-5-4"></td>
-              <td id="c-5-5"></td>
-              <td id="c-5-6"></td>
-              <td id="c-5-7"></td>
-            </tr>
-            <tr class='bottomRows'>
-              <td id="c-6-1"></td>
-              <td id="c-6-2"></td>
-              <td id="c-6-3"></td>
-              <td id="c-6-4"></td>
-              <td id="c-6-5"></td>
-              <td id="c-6-6"></td>
-              <td id="c-6-7"></td>
-            </tr>
-          </table>
         </div>
         <p><a id='2player' class="btn btn-lg btn-primary">Player Vs Player</a></p>
         <p><a id='player' class="btn btn-lg btn-primary">Player Vs Computer</a></p>
+        <p><a id='reset' class="btn btn-lg btn-primary">Reset</a></p>
       </div>
       <div class="footer">
         <p><span class="glyphicon glyphicon-heart"> Games</span></p>

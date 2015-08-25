@@ -1,137 +1,129 @@
 'use strict';
-var game = $('#game');
 
-// Hide Board on start.
-function initialSetUp() {
-  game.hide();
+var game = $('#game');
+var winner;
+var NUM_ROWS = 6;
+var NUM_COLS = 7;
+var EMPTY_CELL = '';
+var board = new Array(NUM_ROWS);
+var activePlayer = 'yellow';
+
+function togglePlayer() {
+  activePlayer = activePlayer === 'yellow' ? 'red' : 'yellow';
+  $('.lead').html('Current Player is: ' + activePlayer);
 }
 
-initialSetUp();
+// Initializing board with empty cells
+function initBoard() {
+  for (var i = 0; i < NUM_ROWS; i++) {
+    board[i] = new Array(NUM_COLS);
+    for (var j = 0; j < NUM_COLS; j++) {
+      board[i][j] = EMPTY_CELL;
+    }
+  }
+  // board[0][0] = 'yellow';
+  // board[1][1] = 'red';
+  console.log('initBoard: ' + JSON.stringify(board));
+}
 
-// Score keeper
-// var player1 = 0;
-// var player2 = 0;
-// var winner;
+function render() {
+  console.log('rendering board: ' + JSON.stringify(board));
+  for (var i = 0; i < NUM_ROWS; i++) {
+    for (var j = 0; j < NUM_COLS; j++) {
+      var cell = board[i][j];
+      if (cell !== EMPTY_CELL) {
+        var id = i + '-' + j;
+        // console.log('setting cell class' + i + ',' + j + ' = ' + cell);
+        $('#' + id).addClass(cell);
+      }
+    }
+  }
+}
 
-// function updateScore() {
-//   player1 = winner === 'blue' ? player1++ : player2++;
-// }
-// updateScore();
-
-
-// Winning logic
-// var cell = function(r, c) {
-//   $(this).id('c-' + r + '-' + c);
-// };
-
-// function testClass(r, c, value) {
-//   value = cell(r, c).hasClass('red blue');
-// }
-
-// var sameColor = function(r, c) {
-//   testClass(r, c, player[current]);
-// }
-
-// function colorField(r, c, color) {
-//   color = cell(r, c).className;
-// }
-
-// function diagonalRtlWon(r, c) {
-//   for (var min = r - 1, t = c + 1; min > 0; min--, t++) {
-//     if (t > 7 || !sameColor(min, t)) break;
-//   }
-//   for (var max = r + 1, t = c - 1; max < 7; max++, t--) {
-//     if (t < 1 || !sameColor(max, t)) break;
-//   }
-//   return max - min > 4;
-// }
-
-// function diagonalLtrWon(r, c) {
-//   for (var min = r - 1, t = c - 1; min > 0; min--, t--) {
-//     if (t < 1 || !sameColor(min, t)) break;
-//   }
-//   for (var max = r + 1, t = c + 1; max < 7; max++, t++) {
-//     if (t > 7 || !sameColor(max, t)) {
-//       break;
-//     }
-//     return max - min > 4;
-//   }
-// }
-
-// function horizontalWon(r, c) {
-//   for (var min = c - 1; min > 0; min--) {
-//     if (!sameColor(r, min)) break;
-//   }
-//   for (var max = c + 1; max < 8; max++) {
-//     if (!sameColor(r, max)) {
-//       break;
-//     }
-//     return max - min > 4;
-//   }
-// }
-
-// function verticalWon(r, c) {
-//   for (var max = r + 1; max < 7; max++) {
-//     if (!sameColor(max, c)) {
-//       break;
-//     }
-//     return max - r > 3;
-//   }
-// }
-
-// Game Logic
-$('.topRow td').click(function() {
-  var col = $(this).parent().children().index($(this));
-
-
-  var activePlayer = $(this).closest('table').data('activeplayer');
-  //Get First available slot
-  var cells = $('table.gameBoard tr td:nth-child(' + (col + 1) + ')');
-  var cell;
-  for (var i = cells.length - 1; i > -1; i--) {
-    if ($(cells[i]).data('token') === undefined) {
-      cell = cells[i];
-      break;
+function checkForWinner() {
+  // Check horizontal win
+  for (var i = 0; i < NUM_ROWS; i++) {
+    for (var j = 0; j < NUM_COLS / 2; j++) {
+      var cell0 = board[i][j + 0];
+      var cell1 = board[i][j + 1];
+      var cell2 = board[i][j + 2];
+      var cell3 = board[i][j + 3];
+      if (cell0 !== EMPTY_CELL &&
+        cell0 === cell1 &&
+        cell0 === cell2 &&
+        cell0 === cell3) {
+        return cell0;
+      }
     }
   }
 
-  $(cell).data('token', activePlayer).addClass(activePlayer);
+  // Check vertical win
+  for (var i = 0; i < NUM_ROWS / 2; i++) {
+    for (var j = 0; j < NUM_COLS; j++) {
+      var cell0 = board[i][j];
+      var cell1 = board[i + 1][j];
+      var cell2 = board[i + 2][j];
+      var cell3 = board[i + 3][j];
+      console.log(cell0 + cell1 + cell2 + cell3)
+      if (cell0 !== EMPTY_CELL &&
+        cell0 === cell1 &&
+        cell0 === cell2 &&
+        cell0 === cell3) {
+        return cell0;
+      }
+    }
+  }
 
 
-  //Toggle Active Player
-  activePlayer = activePlayer === 'red' ? 'blue' : 'red';
-  $(this).closest('table').toggleClass('red blue').data('activeplayer', activePlayer);
+  // Diagonal win bottom left - top right
+  for (var i = 0; i < NUM_ROWS / 2; i++) {
+    for (var j = 0; j < NUM_COLS; j++) {
+      var cell0 = board[i][j + 3];
+      var cell1 = board[i + 1][j + 2];
+      var cell2 = board[i + 2][j + 1];
+      var cell3 = board[i + 3][j + 0];
+      console.log(cell0 + cell1 + cell2 + cell3)
+      if (cell0 !== EMPTY_CELL &&
+        cell0 === cell1 &&
+        cell0 === cell2 &&
+        cell0 === cell3) {
+        return cell0;
+      }
+    }
+  }
 
+  // Diagonal win bottom right - top left
+  for (var i = 0; i < NUM_ROWS / 2; i++) {
+    for (var j = 0; j < NUM_COLS; j++) {
+      var cell0 = board[i][j + 0];
+      var cell1 = board[i + 1][j + 1];
+      var cell2 = board[i + 2][j + 2];
+      var cell3 = board[i + 3][j + 3];
+      console.log(cell0 + cell1 + cell2 + cell3)
+      if (cell0 !== EMPTY_CELL &&
+        cell0 === cell1 &&
+        cell0 === cell2 &&
+        cell0 === cell3) {
+        return cell0;
+      }
+    }
+  }
+  return EMPTY_CELL;
+}
 
-});
+function endGame() {
+  winner.toUpperCase();
+  $('.winner').html(winner + ' Player WINS!!!');
+  game.hide();
+}
 
-// var cells = $('table.gameBoard tr td:nth-child(' + (col + 1) + ')');
-// var cell;
-// for (var i = cells.length - 1; i > -1; i--) {
-//   $(cells[i]).data('token') === undefined)
-//   cell = cells[i];
-
-//   $(cell).data('token', activePlayer).addClass(activePlayer);
-
-//   //Toggle Active Player & add class
-//   activePlayer = activePlayer === 'red' ? 'blue' : 'red';
-//   $(this).closest('table').toggleClass('red blue').data('activeplayer', activePlayer);
-//   console.log('classToggle');
-// }
-
-// }
-
-// //Player logic
-// function playerMove() {
-//   if (!finished) {
-//     $('.topRow td').click(function() {
-//       var col = $(this).parent().children().index($(this));
-//       var activePlayer = $(this).closest('table').data('activeplayer');
-//       play(c);
-//     })
-//     console.log('got to player move');
-//   }
-// }
+//Hide Board on start.
+function initialSetUp() {
+  initBoard();
+  render();
+  game.hide();
+  $('#reset').hide();
+}
 
 // Board focus
 function scroll() {
@@ -141,10 +133,46 @@ function scroll() {
   }, 500);
 }
 
+function gameStart() {
+  game.show();
+  $('#2player, #player').hide();
+  $('.topRow').focus(scroll);
+  $('#reset').show();
+}
+
+initialSetUp();
+
+// Player chip & winner logic
+$('.topRow td').click(function() {
+  var col = $(this).parent().children().index($(this));
+
+  // find first empty cell for given col from bottom to top
+  for (var row = NUM_ROWS - 1; row >= 0; row--) {
+    if (board[row][col] === EMPTY_CELL) {
+      console.log('Found empty cell at ' + row + ',' + col + ' - filling with ' + activePlayer);
+      board[row][col] = activePlayer;
+      togglePlayer();
+      winner = checkForWinner();
+      console.log('winner: ' + winner);
+      if (winner === 'yellow' || winner === 'red') {
+        endGame();
+      }
+      break;
+    }
+
+  }
+  render();
+
+});
+
 // Game start
 $('#2player').click(function() {
-  game.show();
-  $('.btn, .lead').hide();
-  $('.topRow').focus(scroll);
+  gameStart();
   console.log('game start');
+  $('.lead').html('Current Player is: yellow');
+});
+
+// Reset -
+$('#reset').click(function() {
+  location.reload();
 });
