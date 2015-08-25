@@ -9,9 +9,8 @@ var board = new Array(NUM_ROWS);
 var activePlayer = 'yellow';
 
 function togglePlayer() {
-  $(this).closest('table').data('activeplayer');
   activePlayer = activePlayer === 'yellow' ? 'red' : 'yellow';
-  $('#top').toggleClass('red yellow').data('activeplayer', activePlayer);
+  $('#top').toggleClass('red', 'yellow');
   $('.lead').html('Current Player is: ' + activePlayer);
 }
 
@@ -144,6 +143,7 @@ function gameStart() {
   $('.playerBtn').hide();
   scrollPage();
   $('#reset').show();
+   $('#top').addClass(activePlayer);
 }
 
 initialSetUp();
@@ -184,3 +184,28 @@ $('#reset').click(function() {
   location.reload();
 });
 
+
+// $('.topRow td').click(function() {
+//   var col = $(this).parent().children().index($(this));
+
+
+//   var activePlayer = $(this).closest('table').data('activeplayer');
+//   //Get First available slot
+//   var cells = $('table.gameBoard tr td:nth-child(' + (col + 1) + ')');
+//   var cell;
+//   for (var i = cells.length - 1; i > -1; i--) {
+//     if ($(cells[i]).data('token') === undefined) {
+//       cell = cells[i];
+//       break;
+//     }
+//   }
+
+//   $(cell).data('token', activePlayer).addClass(activePlayer);
+
+
+//   //Toggle Active Player
+//   activePlayer = activePlayer === 'red' ? 'blue' : 'red';
+//   $(this).closest('table').toggleClass('red blue').data('activeplayer', activePlayer);
+
+
+// });
