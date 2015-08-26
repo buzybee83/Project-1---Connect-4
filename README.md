@@ -20,14 +20,4 @@ Connect four inspired by childhood games.
 
 ## Screen Mockups/Wireframes
 
-![Mockup](https://raw.githubusercontent.com/buzybee83/Project1-Connect-4/blob/master/app/images/Connect4Mockup.jpg)
-
-## Technologies Used
-
-* [Yeoman]
-* [Grunt]
-* [Bower]
-* [HTTML]
-* [CSS & SCSS]
-* [Javascrit & jQuery]
-
+![Mockup](https://github.com/buzybee83/Project1-Connect-4/blob/master/app/images/Connect4Mockup.jpg)
