@@ -79,7 +79,6 @@ function checkForWinner() {
     }
   }
 
-
   // Diagonal win bottom left - top right
   for (i = 0; i < NUM_ROWS / 2; i++) {
     for (j = 0; j < NUM_COLS; j++) {
@@ -116,21 +115,30 @@ function checkForWinner() {
   return EMPTY_CELL;
 }
 
+// End player turn after a win
 function endGame() {
   $('.topRow').click(function() {
     $('.topRow td').unbind();
   });
+  $('#winner').toggleClass(winner);
+  message.html('We have a WINNER!');
+  //$('.gameboard').css('margin-top', '-215px');
 }
 
+// Hide gameboard
+function hideGame() {
+  game.hide();
+  message.html('');
+}
+
+// Winner message and hide board
 function displayWinner() {
   message.html(winner + ' Player' + '<br />' + 'WINS!!!').css({
-    'font-size': '4em',
+    'font-size': '3.8em',
     'margin-top': '50px',
     'font-weight': 700,
     'color': '#FF1919'
   });
-  $('#reset').css('margin-top', '50px');
-  game.hide();
 }
 
 
@@ -141,7 +149,7 @@ function initialSetUp() {
   game.hide();
   $('#reset').hide();
   $('#player').hide();
-  message.html('Two player game, hit start when ready!');
+  message.show().html('Two player game, hit start when ready!');
   $('#2player').html('Start Game');
 }
 
@@ -177,7 +185,8 @@ $('.topRow td').click(function() {
       console.log('winner: ' + winner);
       if (winner === 'Yellow' || winner === 'Red') {
         endGame();
-        setTimeout(displayWinner, 6000);
+        setTimeout(hideGame, 2000);
+        setTimeout(displayWinner, 2100);
       }
       break;
     }
