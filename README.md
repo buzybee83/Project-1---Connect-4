@@ -8,7 +8,7 @@ Connect four inspired by childhood games.
 
 * User stories: [Trello](https://trello.com/b/BGnTUrff/connect4)
 * Production deployment: [BitBalloon](http://connect4-wdi4-project1.bitballoon.com/)
-* GitHub: [Duck Hunt](https://github.com/buzybee83/Project1-Connect-4)
+* GitHub: [Connect 4](https://github.com/buzybee83/Project1-Connect-4)
 
 ## Technologies
 
